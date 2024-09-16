@@ -134,3 +134,84 @@ class Solution {
 <br>Node value: 1
 <br>Node value: 2
 <br>Node value: 3
+
+
+
+
+# 4.What do you think the memory addresses of array1 and array2 will be?
+- If they are the same, why? When will it change?
+- If they are different, why?
+
+```swift
+  var array1 = [1, 2, 3]
+  var array2 = array1
+```
+
+ **Expected Output:**
+ <br> they are the same due to Swift's optimization technique called Copy-on-Write (CoW).
+
+
+ # 5.What will be the output when this code is executed?
+
+ ```swift
+Consider the following code snippet:
+class MyClass {
+ var myProperty: Int = 0 {
+ willSet {
+ print("Will set to \(newValue)")
+ }
+ didSet {
+ print("Did set from \(oldValue) to \(myProperty)")
+ }
+ }
+ init() {
+ defer { myProperty = 1 }
+ myProperty = 2
+ }
+}
+let instance = MyClass()
+instance.myProperty = 3
+```
+
+**Expected Output:**
+<br>Will set to 1
+<br>Did set from 2 to 1
+<br>Will set to 3
+<br>Did set from 1 to 3
+
+ # 6. Create a dictionary where: The first key stores an array of integers. The second key holds an array of doubles. The third key contains an array of strings.Sort the arrays, but if you encounter a string array, throw an error: "Unsupported type: Sorting is not possible."
+
+ **Solution:**
+ ```swift
+let dict: [String: Any] = ["array1": [8, 2, 3, 5, 1],
+                           "array2": [3.0, 1.0, 2.0],
+                           "array3": ["d", "b", "a", "c"]]
+
+func sortArrayFor(dict: [String: Any]) throws {
+    for (key, value) in dict {
+        if let integerArray = value as? [Int] {
+            let sortedIntArray = integerArray.sorted()
+            print("\(key) sorted integer array: \(sortedIntArray)")
+        } else if let doubleArray = value as? [Double] {
+            let sortedDoubleArray = doubleArray.sorted()
+            print("\(key) sorted double array: \(sortedDoubleArray)")
+        } else if let stringArray = value as? [String] {
+            throw StringArrayError(kind: .unsupportType)
+        }
+    }
+}
+
+struct StringArrayError: Error {
+    enum ErrorKind {
+        case unsupportType
+    }
+    let kind: ErrorKind
+}
+
+do {
+    try sortArrayFor(dict: dict)
+} catch {
+    print("\(error)")
+}
+
+```
