@@ -215,3 +215,35 @@ do {
 }
 
 ```
+
+# 8. # SwiftUI Question
+## Consider the following SwiftUI code snippet:
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    @State private var count = 0
+
+    var body: some View {
+        VStack {
+            Text("Count: $$count)")
+            
+            Button("Increment") {
+                count += 1
+            }
+            
+            Button("Reset") {
+                count = 0
+            }
+        }
+    }
+}
+```
+### Options:
+  1. **The @State variable count cannot be modified inside the Button actions.**
+  2. **The Text view does not update when count changes.**
+  3. **There is no issue; the code works as intended.**
+  4. **The @State variable should be declared as let instead of var.**
+     
+Feel free to share your thoughts or answers in the comments below! 👇
