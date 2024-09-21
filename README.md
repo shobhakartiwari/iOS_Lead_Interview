@@ -216,8 +216,7 @@ do {
 
 ```
 
-# 8. # SwiftUI Question
-## Consider the following SwiftUI code snippet:
+# 8. ## Consider the following SwiftUI code snippet:
 
 ```swift
 import SwiftUI
