@@ -244,5 +244,25 @@ struct ContentView: View {
   2. **The Text view does not update when count changes.**
   3. **There is no issue; the code works as intended.**
   4. **The @State variable should be declared as let instead of var.**
+
+
+# 9. ##  Consider the following Combine code snippet:
+```swift
+let publisher = PassthroughSubject<Int, Never>()
+let subscription = publisher
+ .map { $0 * 2 }
+ .filter { $0 > 5 }
+ .sink { print($0) }
+
+publisher.send(1)
+publisher.send(2)
+publisher.send(3)
+publisher.send(4)
+```
+### ### Options?
+A). 6 , 8 </br>
+B). 2, 4, 6, 8 </br>
+C). 6, 8,12,16 </br>
+D). No output </br>
      
 Feel free to share your thoughts or answers in the comments below! 👇
