@@ -266,3 +266,25 @@ C). 6, 8,12,16 </br>
 D). No output </br>
      
 Feel free to share your thoughts or answers in the comments below! 👇
+
+# 10. ## What is the output of the following code snippet?
+```swift
+class SomeClass {
+ var member: String?
+ func setMember(member: String) {
+ self.member = member
+ }
+}
+var someClass: SomeClass?
+if someClass?.setMember(member: "Swift") != nil {
+ print("Assigned")
+} else {
+ print("Not Assigned")
+}
+```
+### ### Choose the best option:
+#1. Assigned </br>
+#2. Not Assigned </br>
+#3. Compilation error </br>
+#4. None of the given options</br>
+ 
