@@ -1,5 +1,6 @@
-# iOS_Lead_Interview By Shobhakar Tiwari
-This readme file is helpful for people who is preparing for iOS Interview onsite roles
+# iOS Lead Interview Questions
+### Prepared and maintained by [Shobhakar Tiwari](https://github.com/shobhakartiwari)
+
 # 1. **What could be the output of the following code?**
 
  ```swift
