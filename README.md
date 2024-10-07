@@ -288,4 +288,35 @@ if someClass?.setMember(member: "Swift") != nil {
 #2. Not Assigned </br>
 #3. Compilation error </br>
 #4. None of the given options</br>
+
+# 11. ## What will the LazyVGrid display when the following code is executed?
+
+```swift
+struct ContentView: View {
+    let items = Array(1...6).map { "Item \($0)" }
+    
+    let columns = [
+        GridItem(.fixed(100)),
+        GridItem(.flexible()),
+        GridItem(.fixed(100))
+    ]
+    
+    var body: some View {
+        LazyVGrid(columns: columns) {
+            ForEach(items, id: \.self) { item in
+                Text(item)
+                    .padding()
+                    .background(Color.blue)
+            }
+        }
+        .padding()
+    }
+}
+```
+### ### Choose the option:
+#1. 6 items displayed in 2 rows with uneven column widths </br>
+#2. 6 items displayed in 1 column </br>
+#3. 6 items displayed in 3 rows with equal column widths </br>
+#4. 6 items displayed in 2 rows with equal column widths </br>
+
  
