@@ -319,4 +319,13 @@ struct ContentView: View {
 #3. 6 items displayed in 3 rows with equal column widths </br>
 #4. 6 items displayed in 2 rows with equal column widths </br>
 
+# 12. ## What is the main difference between throw and throws in Swift?
+
+
+Choose the best answer:
+#1. throws is used to mark a function that can throw an error, while throw is used to actually throw an error within the function.  </br>
+#2. throw is used to catch errors, while throws is used to handle them outside the function.  </br>
+#3. throw is used to pass errors silently, and throws is used for logging errors.  </br>
+#4. throws is used to declare error types, while throw is used to mark them in code.  </br>
+
  
