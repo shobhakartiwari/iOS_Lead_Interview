@@ -2,7 +2,7 @@
 ### Prepared and maintained by [Shobhakar Tiwari](https://github.com/shobhakartiwari)     
 
 # 1. **What could be the output of the following code?**
-
+        
  ```swift
     DispatchQueue.main.async {
         print(Thread.isMainThread)
