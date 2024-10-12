@@ -328,4 +328,14 @@ Choose the best answer:
 #3. throw is used to pass errors silently, and throws is used for logging errors.  </br>
 #4. throws is used to declare error types, while throw is used to mark them in code.  </br>
 
+
+# 13. ## Condition 0 != 0 is true. How?
+
+
+Choose the best answer: </br>
+#1. func checkEqual<T: Equatable>(value1:T, value2:T) -> Bool { return value1 == value2 }  </br>
+#2. extension Int { static func ==(lhs: Int, rhs: Int) -> Bool { return lhs == rhs } } </br>
+#3. extension Int { static func !=(lhs: Int, rhs: Int) -> Bool { return lhs != rhs } }	  </br>
+#4. extension Int { static func ==(lhs: Int, rhs: Int) -> Bool { return lhs == rhs } }	  </br>
+
  
