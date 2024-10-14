@@ -338,4 +338,37 @@ Choose the best answer: </br>
 #3. extension Int { static func !=(lhs: Int, rhs: Int) -> Bool { return lhs != rhs } }	  </br>
 #4. extension Int { static func ==(lhs: Int, rhs: Int) -> Bool { return lhs == rhs } }	  </br>
 
+
+# 14. ## What will be the output of this code ?
+
+```swift
+func doTest() {
+    let otherQueue = DispatchQueue(label: "otherQueue")
+    
+    DispatchQueue.main.async {
+        print("\(Thread.isMainThread)")  // Prints whether it's on the main thread or not
+        otherQueue.sync {
+            print("\(Thread.isMainThread)")  // Prints whether it's on the main thread or not
+        }
+        otherQueue.async {
+            print("\(Thread.isMainThread)")  // Prints whether it's on the main thread or not
+        }
+    }
+}
+```
+Choose the best answer: </br>
+#answer. true false false  </br>
+
+
+Reason: -
+
+When you create a dispatch queue using DispatchQueue(label: "otherQueue"), it initializes as a serial queue that executes tasks one at a time in the order they are added. By default, tasks on this queue run on a background thread, meaning they operate asynchronously and do not block the main thread, which is responsible for handling user interface updates and other critical task
+
+</br>
+DispatchQueue.main is a globally available serial queue that executes tasks on the application's main thread 
+</br>The main thread is dedicated to UI updates and other primary functions
+
+
+
+
  
