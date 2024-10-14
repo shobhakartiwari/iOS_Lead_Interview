@@ -357,16 +357,16 @@ func doTest() {
 }
 ```
 Choose the best answer: </br>
-#answer. true false false  </br>
+#answer.true, true, false  </br>
 
 
 Reason: -
 
-When you create a dispatch queue using DispatchQueue(label: "otherQueue"), it initializes as a serial queue that executes tasks one at a time in the order they are added. By default, tasks on this queue run on a background thread, meaning they operate asynchronously and do not block the main thread, which is responsible for handling user interface updates and other critical task
+ it's common for developers to believe the .sync() will be executed in the otherQueue. In fact, to avoid unnecessary thread switch, .sync() will continue to execute on the calling thread. So in the code from the post, the closure provided to otherQueue.sync() will execute on the main thread.
 
-</br>
-DispatchQueue.main is a globally available serial queue that executes tasks on the application's main thread 
-</br>The main thread is dedicated to UI updates and other primary functions
+</br>DispatchQueue's .sync() method waits until a lock can be acquired on queue but doesn't actually change the running thread, whereas .async() will run the closure in the queue's thread once it has acquired the thread's lock.
+
+</br>Therefore the outcome is .) true, true, false
 
 
 
