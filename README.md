@@ -368,6 +368,14 @@ Reason: -
 
 </br>Therefore the outcome is .) true, true, false
 
+# 15. ## In Swift, how do you ensure thread-safe property access similar to the atomic keyword in Objective-C?
+
+#Options:  </br>
+#1. Swift properties are atomic by default. </br>
+#2. Swift uses a @synchronized attribute to make properties atomic.  </br>
+#3. Use a serial DispatchQueue or NSLock to manage access to shared properties.  </br>
+#4. Swift has an atomic keyword that needs to be added to property declarations.  </br>
+Answer : Option #3
 
 
 
