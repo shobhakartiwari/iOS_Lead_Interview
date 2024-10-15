@@ -357,7 +357,7 @@ func doTest() {
 }
 ```
 Choose the best answer: </br>
-#answer.true, true, false  </br>
+#answer.true, true, false  </br>   
 
 
 Reason: -
