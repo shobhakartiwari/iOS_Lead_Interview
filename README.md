@@ -14,13 +14,16 @@
 ```
     **Expected Output:**
     
-    false
+    true
     true
  
 
 ### Explanation:
-- **false**: The first print statement occurs inside an asynchronous block, meaning it's likely running on a background thread.
-- **true**: The second print statement runs on the main thread because `DispatchQueue.main.async` schedules it back on the main thread.
+</br>The outer DispatchQueue.main.async block is queued to run on the main queue.</br>
+</br>When this block executes, it will:</br>
+</br>a. Print the result of Thread.isMainThread</br>
+</br>b. Queue another block to run on the main queue</br>
+</br>The inner DispatchQueue.main.async block will then be executed, printing the result of Thread.isMainThread again.</br>
   
 
 # 2. **What is a dispatch barrier, and how can it be used in Swift?**
@@ -377,6 +380,41 @@ Reason: -
 #4. Swift has an atomic keyword that needs to be added to property declarations.  </br>
 Answer : Option #3
 
+#16. ## What should be the output from this code : -
+```swift
+unc testDispatchGroup() {
+    let group = DispatchGroup ( )
+    group.enter ()
+    DispatchQueue.global().async {
+        sleep(2)
+        print("1")
+        group.leave()
+    }
+        
+    group.enter()
+    DispatchQueue.global().async {
+        sleep(1)
+        print("2")
+        group.leave( )
+    }
+    
+    group.notify( queue: .main) {
+        print( "All tasks completed")
+        print( "Tasks" )
+    }
+}
 
+```
 
+#Output : </br>
+2</br>
+1</br>
+All tasks completed</br>
+Tasks</br>
+
+## Explanation : </br>
+Both tasks will start almost simultaneously on global queues.</br>
+After about 1 second, "2" will be printed (from Task 2).</br>
+After about 2 seconds, "1" will be printed (from Task 1).</br>
+Once both tasks have completed, the notification block will run on the main queue</br>
  
