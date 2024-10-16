@@ -534,3 +534,22 @@ func serialQueueSolution() {
     }
 }
 ```
+
+
+# 18. Find the output of this: 
+```swift
+func createCounter () -> () -> Void {
+    var counter = 0
+    func incrementCounter () {
+        counter += 1
+        print (counter)
+    }
+    return incrementCounter
+}
+
+let closure = createCounter()
+closure()
+closure()
+closure()
+```
+
