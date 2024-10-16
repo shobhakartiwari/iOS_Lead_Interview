@@ -380,7 +380,7 @@ Reason: -
 #4. Swift has an atomic keyword that needs to be added to property declarations.  </br>
 Answer : Option #3
 
-#16. ## What should be the output from this code : -
+# 16. ## What should be the output from this code : -
 ```swift
 unc testDispatchGroup() {
     let group = DispatchGroup ( )
@@ -418,3 +418,119 @@ After about 1 second, "2" will be printed (from Task 2).</br>
 After about 2 seconds, "1" will be printed (from Task 1).</br>
 Once both tasks have completed, the notification block will run on the main queue</br>
  
+
+# 17. ## What potential issues do you see with this code? How would you improve it? 
+```swift
+
+// iOS Interview Question #16
+func testThreadSafetyiniOSQuestion() {
+    let group = DispatchGroup()
+    var sharedResource = 0
+    
+    for _ in 1...1000 {
+        group.enter()
+        DispatchQueue.global().async {
+            sharedResource += 1
+            group.leave()
+        }
+    }
+    
+    group.notify(queue: .main) {
+        print("Final value: \(sharedResource)")
+    }
+}
+
+// function call
+testThreadSafetyiniOSQuestion()
+```
+## Answer : </br>
+
+## Key Issues
+Race Condition: Multiple threads access and modify sharedResource without synchronization.
+Non-Atomic Operation: The += operation isn't atomic, leading to potential data races.
+Unpredictable Results: The final value of sharedResource is likely to be less than 1000 and may vary between runs.
+
+
+## Solutions 1. Using Atomic Operations
+```swift
+import Foundation
+
+class AtomicInteger {
+    private var value: Int32
+    private let lock = DispatchSemaphore(value: 1)
+    
+    init(value: Int32 = 0) {
+        self.value = value
+    }
+    
+    func increment() -> Int32 {
+        lock.wait()
+        defer { lock.signal() }
+        value += 1
+        return value
+    }
+}
+
+func improvedThreadSafetyQuestion() {
+    let group = DispatchGroup()
+    let sharedResource = AtomicInteger()
+    
+    for _ in 1...1000 {
+        group.enter()
+        DispatchQueue.global().async {
+            _ = sharedResource.increment()
+            group.leave()
+        }
+    }
+    
+    group.notify(queue: .main) {
+        print("Final value: $$sharedResource.increment())")
+    }
+}
+```
+
+
+## Solutions 2. Using Actor (Swift 5.5+)
+```swift
+actor SharedResource {
+    private(set) var value = 0
+    
+    func increment() -> Int {
+        value += 1
+        return value
+    }
+}
+
+func actorBasedSolution() async {
+    let resource = SharedResource()
+    await withTaskGroup(of: Void.self) { group in
+        for _ in 1...1000 {
+            group.addTask {
+                await resource.increment()
+            }
+        }
+    }
+    print("Final value: $$await resource.value)")
+}
+```
+
+## Solutions 3.Using Serial Queue
+```swift
+func serialQueueSolution() {
+    let group = DispatchGroup()
+    var sharedResource = 0
+    let serialQueue = DispatchQueue(label: "com.example.serialQueue")
+    
+    for _ in 1...1000 {
+        group.enter()
+        serialQueue.async {
+            sharedResource += 1
+            group.leave()
+        }
+    }
+    
+    group.notify(queue: .main) {
+        print("Final value: $$sharedResource)")
+    }
+}
+```
