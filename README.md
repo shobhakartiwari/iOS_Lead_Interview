@@ -577,7 +577,39 @@ class DataCache {
 - Atomic properties: Can help ensure thread safety but are more complex to implement in Swift directly.
 - Serial queue vs. Barrier: Serial queues ensure that only one task runs at a time. Barriers, when used on concurrent queues, block other tasks while the barrier task runs.
 
-# Solution ( one of solution )
+# solution: 1. OSAllocatedUnfairLock
+ To use a low-level lock like OSAllocatedUnfairLock to synchronize access to the cache. This method will block any other thread from accessing the cache while a write or read operation is in progress, preventing race conditions while maintaining high performance.
+```swift
+import os.lock
+
+class DataCache {
+    private var cache: [String: Data] = [:]
+    private var lock = OSAllocatedUnfairLock()
+    
+    func setData(for key: String, data: Data) {
+        lock.lock()  // Acquire the lock
+        cache[key] = data
+        lock.unlock()  // Release the lock
+    }
+    
+    func getData(for key: String) -> Data? {
+        lock.lock()  // Acquire the lock
+        let data = cache[key]
+        lock.unlock()  // Release the lock
+        return data
+    }
+}
+
+## Pros ::
+- Low-overhead locking mechanism.
+- Fast performance for high-concurrency scenarios.
+- Maintains the same synchronous function signatures, making it easy to integrate into existing codebases.
+## Cons:
+- More prone to human error (e.g., forgetting to release the lock).
+- Can introduce deadlocks if not handled carefully.
+```
+ 
+# Solution 2. NSLOCK 
 ```swift
 import Foundation
 
@@ -629,8 +661,50 @@ DispatchQueue.global().async {
 group.wait()
 print("All operations completed")
 ```
-# Explanation::
 
+## Solution 3. actor
+```swift
+## Pros:
+
+- Simplifies thread-safe code, as Swift automatically handles access to cache.
+- No risk of deadlocks or race conditions.
+
+## Cons:
+- Changes the API to asynchronous, which could introduce complexity at the call site (requiring await).
+```
+
+## Solution 5. Dispatch Barriers 
+```swift
+class DataCache<T> {
+    private var cache: [String: T] = [:]
+    private let queue = DispatchQueue(label: "com.datacache.queue", attributes: .concurrent)
+    
+    // Set data (write) using a barrier to ensure exclusive access
+    func setData(for key: String, data: T) {
+        queue.async(flags: .barrier) {  // The barrier flag ensures exclusive write access
+            self.cache[key] = data
+        }
+    }
+    
+    // Get data (read) allowing concurrent reads
+    func getData(for key: String) -> T? {
+        return queue.sync {  // Sync call to ensure thread safety
+            return self.cache[key]
+        }
+    }
+}
+
+```
+- Why Use Dispatch Barrier?
+- Efficiency: It allows for concurrent reads, which is highly efficient, especially when your application reads more than it writes.
+- Exclusive Writes: The barrier ensures that only one write operation occurs at a time, making writes safe and preventing data races.
+## Pros:
+- Optimized for Reads: Since reads don’t block each other, this approach is highly performant when you have more frequent reads than writes.
+- Simple and Effective: It provides simple, easy-to-use concurrency control without changing function signatures to async, which maintains ease of use in synchronous contexts.
+## Cons:
+- Potential Write Delays: If there are many read operations, writes can potentially be delayed, as they must wait for the queue to be free.
+  
+# Explanation::
 - Uses defer to ensure the lock is always unlocked.
 - Adds small delays to allow interleaving of read and write operations.
 - Uses a DispatchGroup to ensure the program doesn't exit before operations complete.
