@@ -553,3 +553,85 @@ closure()
 closure()
 ```
 
+#19 Analyze this class for race conditions. How would you fix this using Swift concurrency tools!
+```swift
+///#iOS Onsite #Interview Series - Question #19
+class DataCache {
+    private var cache: [String: Data] = [:]
+    
+    func setData(for key: String, data: Data) {
+        cache[key] = data
+    }
+    
+    func getData(for key: String) -> Data? {
+        return cache[key]
+    }
+}
+```
+
+# Explanation ::
+
+- Race conditions: When two or more threads try to modify the same data concurrently, unpredictable results may occur. This needs careful synchronization.
+- DispatchQueue: Use serial queues or DispatchQueue barriers to manage thread safety without locks.
+- NSLock: This is another option for mutual exclusion, but it can introduce deadlocks if not used carefully.
+- Atomic properties: Can help ensure thread safety but are more complex to implement in Swift directly.
+- Serial queue vs. Barrier: Serial queues ensure that only one task runs at a time. Barriers, when used on concurrent queues, block other tasks while the barrier task runs.
+
+# Solution ( one of solution )
+```swift
+import Foundation
+
+class DataCache {
+    private var cache: [String: Data] = [:]
+    private let lock = NSLock()
+
+    func setData(for key: String, data: Data) {
+        lock.lock()
+        defer { lock.unlock() }
+        cache[key] = data
+    }
+
+    func getData(for key: String) -> Data? {
+        lock.lock()
+        defer { lock.unlock() }
+        return cache[key]
+    }
+}
+
+let cache = DataCache()
+let group = DispatchGroup()
+
+// Writing to cache
+group.enter()
+DispatchQueue.global().async {
+    for i in 0..<100 {
+        let data = "Data \(i)".data(using: .utf8)!
+        cache.setData(for: "key1", data: data)
+        Thread.sleep(forTimeInterval: 0.01) // Small delay to allow reading
+    }
+    group.leave()
+}
+
+// Reading from cache
+group.enter()
+DispatchQueue.global().async {
+    for _ in 0..<100 {
+        if let data = cache.getData(for: "key1"),
+           let stringData = String(data: data, encoding: .utf8) {
+            print("Read data: \(stringData)")
+        }
+        Thread.sleep(forTimeInterval: 0.01) // Small delay to allow writing
+    }
+    group.leave()
+}
+
+// Wait for both operations to complete
+group.wait()
+print("All operations completed")
+```
+# Explanation::
+
+- Uses defer to ensure the lock is always unlocked.
+- Adds small delays to allow interleaving of read and write operations.
+- Uses a DispatchGroup to ensure the program doesn't exit before operations complete.
+- Prints a message when all operations are done.
