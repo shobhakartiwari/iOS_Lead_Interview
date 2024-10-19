@@ -624,6 +624,11 @@ class DataCache {
 - More prone to human error (e.g., forgetting to release the lock).
 - Can introduce deadlocks if not handled carefully.
 ```
+
+>- Why to choose this ?
+>- It’s simple to use, relatively lightweight and performs well for many simple cases such as protecting a resource. It saves you from having to change all the existing calling code, were you to use an actor instead. Also, actors are not « free » either with respect to context switching.
+In turn, Apple has guidance to avoid using Mutex and various other thread locking mechanisms unless you absolutely need them (which is very unlikely) when making use of concurrency.
+>- [Credit:  Thanks to Michael Long & Patrick D for providing these inputs]
  
 # Solution 2. NSLOCK 
 ```swift
@@ -689,7 +694,7 @@ print("All operations completed")
 - Changes the API to asynchronous, which could introduce complexity at the call site (requiring await).
 ```
 
-## Solution 5. Dispatch Barriers 
+## Solution 4. Dispatch Barriers 
 ```swift
 class DataCache<T> {
     private var cache: [String: T] = [:]
