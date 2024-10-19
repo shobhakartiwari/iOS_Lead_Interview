@@ -1,5 +1,21 @@
-# iOS Lead Interview Questions                     
-### Prepared and maintained by [Shobhakar Tiwari](https://github.com/shobhakartiwari)     
+##  iOS Lead Interview Questions 
+> Your Cheat Sheet For iOS Interview
+
+### Prepared & maintained by [Shobhakar Tiwari](https://github.com/shobhakartiwari) • [DM for iOS Mock interview](https://www.linkedin.com/in/shobhakar-tiwari/)
+
+## About me
+
+Hi, I am Shobhakar Tiwari • I have taught and mentored many developers, and their efforts landed them high-paying tech jobs in United States, helped many tech companies in solving their unique problems, and created many framework for airline, e-Commerce based companies. I am passionate coding and always try to contribute to the developer community.
+
+You can check my contributions over:
+
+- [StackOverflow](https://stackoverflow.com/users/3400991/shobhakar-tiwari?tab=profile)
+- [LinkedIn](https://www.linkedin.com/in/shobhakar-tiwari/)
+- [GitHub](https://github.com/shobhakartiwari)
+
+- 🔗 Feel free to explore my repositories to get a taste of my work, and don't hesitate to get in touch if you have any questions or collaboration ideas. Happy coding! 🎉  
+
+
 
 # 1. **What could be the output of the following code?**
         
