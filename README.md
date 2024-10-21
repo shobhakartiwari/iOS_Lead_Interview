@@ -730,3 +730,9 @@ class DataCache<T> {
 - Adds small delays to allow interleaving of read and write operations.
 - Uses a DispatchGroup to ensure the program doesn't exit before operations complete.
 - Prints a message when all operations are done.
+
+# 20. ## Are lazy vars computed more than once in Swift? 
+# Explanation:: 
+- Lazy vars are not thread safe by default, meaning if a lazy property is not yet initialized & multiple threads try to access it, there is a possiblility that it will be initialized more than once.
+
+
