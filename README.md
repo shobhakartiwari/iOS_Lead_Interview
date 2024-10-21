@@ -731,7 +731,146 @@ class DataCache<T> {
 - Uses a DispatchGroup to ensure the program doesn't exit before operations complete.
 - Prints a message when all operations are done.
 
-# 20. ## Are lazy vars computed more than once in Swift? 
+# 20. ## #Scenario: Refactor the UserPreferences class to support multiple storage methods including UserDefaults, Plist.
+
+- You're working with a UserPreferences singleton in an iOS app that currently uses UserDefaults for storing settings. The app needs the flexibility to switch between different storage methods like UserDefaults, Plist. How would you refactor this to allow easy switching between storage options?
+
+```swift
+/// 🚀 #iOS Lead Onsite #Interview Series - Question #20 🚀
+class UserPreferences {
+    static let shared = UserPreferences()
+
+    private let userDefaults = UserDefaults.standard
+
+    private init() {}
+
+    // Method to set a value for a given key
+    func setValue(_ value: String, forKey key: String) {
+        userDefaults.set(value, forKey: key)
+    }
+
+    // Method to get a value for a given key
+    func getValue(forKey key: String) -> String? {
+        return userDefaults.string(forKey: key)
+    }
+}
+
+// Example usage
+let preferences = UserPreferences.shared
+preferences.setValue("Shobhakar", forKey: "username")
+
+if let username = preferences.getValue(forKey: "username") {
+    print("Retrieved username: \(username)")  // Output: Retrieved username: Shobhakar
+}
+```
+## Answer :: 
+```Swift
+import Foundation
+ import CoreData
+
+ enum StorageMethod {
+     case userDefaults
+     case plist
+     case coreData
+ }
+
+ class UserPreferences {
+     static let shared = UserPreferences()
+     
+     private var storageMethod: StorageMethod = .userDefaults
+     
+     private init() {}
+
+     // Method to set the storage method
+     func setStorageMethod(_ method: StorageMethod) {
+         storageMethod = method
+     }
+
+     // Set value based on the current storage method
+     func setValue(_ value: String, forKey key: String) {
+         switch storageMethod {
+         case .userDefaults:
+             UserDefaults.standard.set(value, forKey: key)
+         case .plist:
+             saveToPlist(value: value, forKey: key)
+         case .coreData:
+             saveToCoreData(value: value, forKey: key)
+         }
+     }
+
+     // Get value based on the current storage method
+     func getValue(forKey key: String) -> String? {
+         switch storageMethod {
+         case .userDefaults:
+             return UserDefaults.standard.string(forKey: key)
+         case .plist:
+             return loadFromPlist(forKey: key)
+         case .coreData:
+             return loadFromCoreData(forKey: key)
+         }
+     }
+
+     // PList methods
+     private func saveToPlist(value: String, forKey key: String) {
+         let filePath = getPlistPath()
+         var plistDict = NSDictionary(contentsOf: filePath) as? [String: String] ?? [:]
+         plistDict[key] = value
+         (plistDict as NSDictionary).write(to: filePath, atomically: true)
+     }
+
+     private func loadFromPlist(forKey key: String) -> String? {
+         let filePath = getPlistPath()
+         let plistDict = NSDictionary(contentsOf: filePath) as? [String: String]
+         return plistDict?[key]
+     }
+
+     private func getPlistPath() -> URL {
+         let fileManager = FileManager.default
+         let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+         return urls[0].appendingPathComponent("UserPreferences.plist")
+     }
+
+     // Core Data methods
+     private func saveToCoreData(value: String, forKey key: String) {
+         // Assuming CoreData setup is done
+         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+         let newPreference = UserPreferenceEntity(context: context)
+         newPreference.key = key
+         newPreference.value = value
+         do {
+             try context.save()
+         } catch {
+             print("Failed to save to Core Data: \(error)")
+         }
+     }
+
+     private func loadFromCoreData(forKey key: String) -> String? {
+         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+         let request: NSFetchRequest<UserPreferenceEntity> = UserPreferenceEntity.fetchRequest()
+         request.predicate = NSPredicate(format: "key == %@", key)
+         
+         do {
+             let results = try context.fetch(request)
+             return results.first?.value
+         } catch {
+             print("Failed to load from Core Data: \(error)")
+             return nil
+         }
+     }
+ }
+
+ // Example usage
+ let preferences = UserPreferences.shared
+ preferences.setStorageMethod(.plist)  // Switch to Plist storage
+ preferences.setValue("Shobhakar", forKey: "username")
+
+ if let username = preferences.getValue(forKey: "username") {
+     print("Retrieved username: \(username)")  // Output: Retrieved username: Shobhakar
+ }
+```
+
+
+# 21. ## Are lazy vars computed more than once in Swift? 
 # Explanation:: 
 - Lazy vars are not thread safe by default, meaning if a lazy property is not yet initialized & multiple threads try to access it, there is a possiblility that it will be initialized more than once.
 
