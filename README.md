@@ -874,4 +874,17 @@ import Foundation
 # Explanation:: 
 - Lazy vars are not thread safe by default, meaning if a lazy property is not yet initialized & multiple threads try to access it, there is a possiblility that it will be initialized more than once.
 
+# 22. Structs Inside Classes and Memory Management in Swift?
+- In Swift, structs are value types and are generally stored on the stack, while classes are reference types and are stored on the heap. If you have a struct inside a class, where is the memory for the struct allocated, and why?
+
+# Explanation:: 
+- In Swift, the memory allocation for value types and reference types depends on their context.
+
+- Structs are value types and are generally stored on the stack when used alone or in isolation.
+Classes are reference types and are stored on the heap.
+Now, if you have a struct inside a class, the memory for that struct is allocated on the heap, along with the memory for the class instance. This happens because when you create an instance of a class, all of its properties (whether value types or reference types) are stored as part of the class’s memory block on the heap. The class instance holds a reference to its memory location on the heap, and all its properties—including the struct—are stored in that same memory.
+
+- Why is it stored on the heap?
+When a value type (such as a struct) is a property of a reference type (such as a class), it becomes part of the class's internal data. Since the class is stored on the heap, all of its contents, including value types, are stored on the heap to ensure they remain alive as long as the class instance exists. In this case, the struct is "lifted" to the heap with the class for proper memory management.
+
 
