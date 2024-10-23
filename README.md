@@ -1,9 +1,9 @@
 ##  iOS Lead Interview Questions 
 > Your Cheat Sheet For iOS Interview
 
-### Prepared & maintained by [Shobhakar Tiwari](https://github.com/shobhakartiwari) 
+## Prepared & maintained by [Shobhakar Tiwari](https://github.com/shobhakartiwari) 
 
-## About me::   [DM for iOS Mock interview](https://www.linkedin.com/in/shobhakar-tiwari/)
+## About me:   [DM for iOS Mock interview](https://www.linkedin.com/in/shobhakar-tiwari/)
 
 Hi, I am Shobhakar Tiwari • I have taught and mentored many developers, and their efforts landed them high-paying tech jobs in United States, helped many tech companies in solving their unique problems, and created many framework for airline, e-Commerce based companies. I am passionate coding and always try to contribute to the developer community.
 
@@ -17,7 +17,7 @@ You can check my contributions over:
 
 
 
-# 1. **What could be the output of the following code?**
+## 1. **What could be the output of the following code?**
         
  ```swift
     DispatchQueue.main.async {
@@ -34,7 +34,7 @@ You can check my contributions over:
     true
  
 
-### Explanation:
+## Explanation:
 </br>The outer DispatchQueue.main.async block is queued to run on the main queue.</br>
 </br>When this block executes, it will:</br>
 </br>a. Print the result of Thread.isMainThread</br>
@@ -42,7 +42,7 @@ You can check my contributions over:
 </br>The inner DispatchQueue.main.async block will then be executed, printing the result of Thread.isMainThread again.</br>
   
 
-# 2. **What is a dispatch barrier, and how can it be used in Swift?**
+##  2. **What is a dispatch barrier, and how can it be used in Swift?**
 
     A dispatch barrier is a mechanism in GCD (Grand Central Dispatch) used to ensure that a specific task in a concurrent queue is executed in isolation. It guarantees that the task runs exclusively, while other tasks in the queue are suspended, making it useful for thread-safe data access in concurrent environments.
 
@@ -100,12 +100,12 @@ You can check my contributions over:
     The barrier ensures that no reading task occurs while the shared resource is being modified.
 
 
-# 3. Remove Duplicates from Sorted Linked List
+##  3. Remove Duplicates from Sorted Linked List
 
 **Problem Description:**
 Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
 
-**Solution:**
+## Solution:
 
 ```swift
 class SinglyLinkedList {
@@ -149,16 +149,12 @@ class Solution {
 }
 ```
 
-  **Expected Output:**
-
+## Expected Output:
 <br>Node value: 1
 <br>Node value: 2
 <br>Node value: 3
 
-
-
-
-# 4.What do you think the memory addresses of array1 and array2 will be?
+##  4.What do you think the memory addresses of array1 and array2 will be?
 - If they are the same, why? When will it change?
 - If they are different, why?
 
@@ -167,11 +163,11 @@ class Solution {
   var array2 = array1
 ```
 
- **Expected Output:**
+##  Expected Output:
  <br> they are the same due to Swift's optimization technique called Copy-on-Write (CoW).
 
 
- # 5.What will be the output when this code is executed?
+## 5.What will be the output when this code is executed?
 
  ```swift
 Consider the following code snippet:
@@ -193,15 +189,15 @@ let instance = MyClass()
 instance.myProperty = 3
 ```
 
-**Expected Output:**
+##  Expected Output:
 <br>Will set to 1
 <br>Did set from 2 to 1
 <br>Will set to 3
 <br>Did set from 1 to 3
 
- # 6. Create a dictionary where: The first key stores an array of integers. The second key holds an array of doubles. The third key contains an array of strings.Sort the arrays, but if you encounter a string array, throw an error: "Unsupported type: Sorting is not possible."
+## 6. Create a dictionary where: The first key stores an array of integers. The second key holds an array of doubles. The third key contains an array of strings.Sort the arrays, but if you encounter a string array, throw an error: "Unsupported type: Sorting is not possible."
 
- **Solution:**
+##  Solution:
  ```swift
 let dict: [String: Any] = ["array1": [8, 2, 3, 5, 1],
                            "array2": [3.0, 1.0, 2.0],
@@ -236,7 +232,7 @@ do {
 
 ```
 
-# 8. ## Consider the following SwiftUI code snippet:
+## 8. Consider the following SwiftUI code snippet:
 
 ```swift
 import SwiftUI
@@ -259,14 +255,14 @@ struct ContentView: View {
     }
 }
 ```
-### Options:
+## Options:
   1. **The @State variable count cannot be modified inside the Button actions.**
   2. **The Text view does not update when count changes.**
   3. **There is no issue; the code works as intended.**
   4. **The @State variable should be declared as let instead of var.**
 
 
-# 9. ##  Consider the following Combine code snippet:
+## 9. ##  Consider the following Combine code snippet:
 ```swift
 let publisher = PassthroughSubject<Int, Never>()
 let subscription = publisher
@@ -279,7 +275,7 @@ publisher.send(2)
 publisher.send(3)
 publisher.send(4)
 ```
-### ### Options?
+## Options?
 A). 6 , 8 </br>
 B). 2, 4, 6, 8 </br>
 C). 6, 8,12,16 </br>
@@ -287,7 +283,7 @@ D). No output </br>
      
 Feel free to share your thoughts or answers in the comments below! 👇
 
-# 10. ## What is the output of the following code snippet?
+## 10. What is the output of the following code snippet?
 ```swift
 class SomeClass {
  var member: String?
@@ -302,13 +298,13 @@ if someClass?.setMember(member: "Swift") != nil {
  print("Not Assigned")
 }
 ```
-### ### Choose the best option:
+## Choose the best option:
 #1. Assigned </br>
 #2. Not Assigned </br>
 #3. Compilation error </br>
 #4. None of the given options</br>
 
-# 11. ## What will the LazyVGrid display when the following code is executed?
+## 11. What will the LazyVGrid display when the following code is executed?
 
 ```swift
 struct ContentView: View {
@@ -332,33 +328,30 @@ struct ContentView: View {
     }
 }
 ```
-### ### Choose the option:
+## Choose the option:
 #1. 6 items displayed in 2 rows with uneven column widths </br>
 #2. 6 items displayed in 1 column </br>
 #3. 6 items displayed in 3 rows with equal column widths </br>
 #4. 6 items displayed in 2 rows with equal column widths </br>
 
-# 12. ## What is the main difference between throw and throws in Swift?
-
-
-Choose the best answer:
+## 12. What is the main difference between throw and throws in Swift?
+## Choose the best answer:
 #1. throws is used to mark a function that can throw an error, while throw is used to actually throw an error within the function.  </br>
 #2. throw is used to catch errors, while throws is used to handle them outside the function.  </br>
 #3. throw is used to pass errors silently, and throws is used for logging errors.  </br>
 #4. throws is used to declare error types, while throw is used to mark them in code.  </br>
 
 
-# 13. ## Condition 0 != 0 is true. How?
+## 13. Condition 0 != 0 is true. How?
 
-
-Choose the best answer: </br>
+## Choose the best answer: </br>
 #1. func checkEqual<T: Equatable>(value1:T, value2:T) -> Bool { return value1 == value2 }  </br>
 #2. extension Int { static func ==(lhs: Int, rhs: Int) -> Bool { return lhs == rhs } } </br>
 #3. extension Int { static func !=(lhs: Int, rhs: Int) -> Bool { return lhs != rhs } }	  </br>
 #4. extension Int { static func ==(lhs: Int, rhs: Int) -> Bool { return lhs == rhs } }	  </br>
 
 
-# 14. ## What will be the output of this code ?
+## 14. What will be the output of this code ?
 
 ```swift
 func doTest() {
@@ -375,7 +368,7 @@ func doTest() {
     }
 }
 ```
-Choose the best answer: </br>
+## Choose the best answer: </br>
 #answer.true, true, false  </br>   
 
 
@@ -387,16 +380,16 @@ Reason: -
 
 </br>Therefore the outcome is .) true, true, false
 
-# 15. ## In Swift, how do you ensure thread-safe property access similar to the atomic keyword in Objective-C?
+## 15. In Swift, how do you ensure thread-safe property access similar to the atomic keyword in Objective-C?
 
-#Options:  </br>
+## Options:  </br>
 #1. Swift properties are atomic by default. </br>
 #2. Swift uses a @synchronized attribute to make properties atomic.  </br>
 #3. Use a serial DispatchQueue or NSLock to manage access to shared properties.  </br>
 #4. Swift has an atomic keyword that needs to be added to property declarations.  </br>
 Answer : Option #3
 
-# 16. ## What should be the output from this code : -
+## 16. What should be the output from this code : -
 ```swift
 unc testDispatchGroup() {
     let group = DispatchGroup ( )
@@ -422,7 +415,7 @@ unc testDispatchGroup() {
 
 ```
 
-#Output : </br>
+## Output : </br>
 2</br>
 1</br>
 All tasks completed</br>
@@ -435,7 +428,7 @@ After about 2 seconds, "1" will be printed (from Task 1).</br>
 Once both tasks have completed, the notification block will run on the main queue</br>
  
 
-# 17. ## What potential issues do you see with this code? How would you improve it? 
+## 17. What potential issues do you see with this code? How would you improve it? 
 ```swift
 
 // iOS Interview Question #16
@@ -505,7 +498,6 @@ func improvedThreadSafetyQuestion() {
 }
 ```
 
-
 ## Solutions 2. Using Actor (Swift 5.5+)
 ```swift
 actor SharedResource {
@@ -552,7 +544,7 @@ func serialQueueSolution() {
 ```
 
 
-# 18. Find the output of this: 
+## 18. Find the output of this: 
 ```swift
 func createCounter () -> () -> Void {
     var counter = 0
@@ -569,7 +561,7 @@ closure()
 closure()
 ```
 
-#19 Analyze this class for race conditions. How would you fix this using Swift concurrency tools!
+## 19. Analyze this class for race conditions. How would you fix this using Swift concurrency tools!
 ```swift
 ///#iOS Onsite #Interview Series - Question #19
 class DataCache {
@@ -585,7 +577,7 @@ class DataCache {
 }
 ```
 
-# Explanation ::
+## Explanation ::
 
 - Race conditions: When two or more threads try to modify the same data concurrently, unpredictable results may occur. This needs careful synchronization.
 - DispatchQueue: Use serial queues or DispatchQueue barriers to manage thread safety without locks.
@@ -593,7 +585,7 @@ class DataCache {
 - Atomic properties: Can help ensure thread safety but are more complex to implement in Swift directly.
 - Serial queue vs. Barrier: Serial queues ensure that only one task runs at a time. Barriers, when used on concurrent queues, block other tasks while the barrier task runs.
 
-# solution: 1. OSAllocatedUnfairLock
+## solution: 1. OSAllocatedUnfairLock
  To use a low-level lock like OSAllocatedUnfairLock to synchronize access to the cache. This method will block any other thread from accessing the cache while a write or read operation is in progress, preventing race conditions while maintaining high performance.
 ```swift
 import os.lock
@@ -630,7 +622,7 @@ class DataCache {
 In turn, Apple has guidance to avoid using Mutex and various other thread locking mechanisms unless you absolutely need them (which is very unlikely) when making use of concurrency.
 >- [Credit:  Thanks to Michael Long & Patrick D for providing these inputs]
  
-# Solution 2. NSLOCK 
+## Solution 2. NSLOCK 
 ```swift
 import Foundation
 
@@ -725,13 +717,13 @@ class DataCache<T> {
 ## Cons:
 - Potential Write Delays: If there are many read operations, writes can potentially be delayed, as they must wait for the queue to be free.
   
-# Explanation::
+## Explanation::
 - Uses defer to ensure the lock is always unlocked.
 - Adds small delays to allow interleaving of read and write operations.
 - Uses a DispatchGroup to ensure the program doesn't exit before operations complete.
 - Prints a message when all operations are done.
 
-# 20. ## #Scenario: Refactor the UserPreferences class to support multiple storage methods including UserDefaults, Plist.
+##  20. Scenario: Refactor the UserPreferences class to support multiple storage methods including UserDefaults, Plist.
 
 - You're working with a UserPreferences singleton in an iOS app that currently uses UserDefaults for storing settings. The app needs the flexibility to switch between different storage methods like UserDefaults, Plist. How would you refactor this to allow easy switching between storage options?
 
@@ -870,14 +862,14 @@ import Foundation
 ```
 
 
-# 21. ## Are lazy vars computed more than once in Swift? 
-# Explanation:: 
+## 21. Are lazy vars computed more than once in Swift? 
+## Explanation:: 
 - Lazy vars are not thread safe by default, meaning if a lazy property is not yet initialized & multiple threads try to access it, there is a possiblility that it will be initialized more than once.
 
-# 22. Structs Inside Classes and Memory Management in Swift?
+## 22. Structs Inside Classes and Memory Management in Swift?
 - In Swift, structs are value types and are generally stored on the stack, while classes are reference types and are stored on the heap. If you have a struct inside a class, where is the memory for the struct allocated, and why?
 
-# Explanation:: 
+## Explanation:: 
 - In Swift, the memory allocation for value types and reference types depends on their context.
 
 - Structs are value types and are generally stored on the stack when used alone or in isolation.
