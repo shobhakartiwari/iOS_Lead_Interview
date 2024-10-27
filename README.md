@@ -899,3 +899,21 @@ Smart MVVM is an enhanced version of the traditional MVVM (Model-View-ViewModel)
 - **Enhanced Testability**: The use of DI and decoupled components allows for easier unit testing of the ViewModel.
 - **Responsive UI**: Reactive programming ensures that the UI remains in sync with the underlying data model seamlessly.
 
+## 24. When displaying images in a UITableView, how would you approach caching those images to improve performance? What factors would you consider in deciding how much data to store in the cache?
+- To improve performance when displaying images in a UITableView, I would implement a caching strategy that includes both in-memory and on-disk caching.
+
+### In-Memory Caching:
+- I would use an in-memory cache to store recently accessed images. This allows for quick retrieval as the user scrolls, improving the overall responsiveness of the app. Libraries like SDWebImage or Kingfisher can be helpful because they have built-in memory caching mechanisms.
+On-Disk Caching:
+
+- In addition to in-memory caching, I would implement on-disk caching to store images for offline access and reduce redundant network requests. This is especially useful for images that are not frequently updated.
+
+### Determining Cache Size:
+- To determine how much data to store in the cache, I would consider the following factors:
+- Available Memory: Monitor the app’s memory usage to set a reasonable limit for the in-memory cache, typically around 10-20% of available memory.
+- Image Size and Frequency of Access: Analyze the average size of images and their access patterns. Frequently accessed images can be prioritized for caching.
+- Cache Eviction Policy: Implement an eviction policy, such as Least Recently Used (LRU), to remove the least accessed images from the cache when the size - - limit is reached.
+
+### Cache Invalidation:
+- Lastly, I would implement strategies for cache invalidation, such as checking for updates on the server or allowing users to refresh images manually to ensure that they see the most current data.
+- By combining these strategies, I can optimize image loading in the UITableView while managing memory effectively and enhancing user experience.
