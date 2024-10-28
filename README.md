@@ -917,3 +917,12 @@ On-Disk Caching:
 ### Cache Invalidation:
 - Lastly, I would implement strategies for cache invalidation, such as checking for updates on the server or allowing users to refresh images manually to ensure that they see the most current data.
 - By combining these strategies, I can optimize image loading in the UITableView while managing memory effectively and enhancing user experience.
+
+## 25. If an iOS app is suspended, will it still receive push notifications? If yes, will the push notification delegate method execute when the notification is received?
+- Answer: Yes, an iOS app can receive push notifications even when it’s suspended. In iOS, push notifications are managed by the system rather than the app itself. When a push notification arrives for a suspended app, the system displays the notification in the notification center.
+- However, the delegate method (userNotificationCenter(_:didReceive:withCompletionHandler:)) will not execute immediately when the app is in the background or suspended. Instead, the method is called only if:
+- The user taps the notification, which launches or brings the app to the foreground.
+- The notification is configured with a "content-available" key, allowing for silent pushes that might wake the app in the background (if permitted).
+To summarize:
+- Yes, the app can receive push notifications while suspended.
+- No, the delegate method won’t execute unless the user interacts with the notification or the notification is configured for background updates.
