@@ -926,3 +926,6 @@ On-Disk Caching:
 To summarize:
 - Yes, the app can receive push notifications while suspended.
 - No, the delegate method won’t execute unless the user interacts with the notification or the notification is configured for background updates.
+
+## 26. Apple push notifications Interview Questions ( i have created this supporting till iOS 13 , will update this shortly)
+- Download complete flow diagram along with interview questions from this link : https://github.com/shobhakartiwari/Push-Notifications-Interview-guide.git
