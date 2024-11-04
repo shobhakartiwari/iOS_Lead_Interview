@@ -929,3 +929,14 @@ To summarize:
 
 ## 26. Apple push notifications Interview Questions ( i have created this supporting till iOS 13 , will update this shortly)
 - Download complete flow diagram along with interview questions from this link : https://github.com/shobhakartiwari/Push-Notifications-Interview-guide.git
+
+## 27. You need to migrate a Core Data model that has significant changes, including adding new entities, relationships, and attributes. Which of the following approaches is most appropriate for handling this migration while preserving existing data?
+- 1. Use Lightweight Migration by setting NSMigratePersistentStoresAutomaticallyOption and NSInferMappingModelAutomaticallyOption to true in your persistent store options, as Core Data will infer the mapping model for complex changes.
+
+- 2. Create a Custom Migration Mapping Model with a custom mapping model file to define transformation logic and manually handle complex data migrations between old and new versions.
+
+- 3. Remove the old data store and start fresh with a new Core Data stack, letting users start with clean data in the updated model.
+
+- 4. Enable Automatic Schema Updating by modifying the Core Data model directly in place without versioning, as Core Data will automatically adjust to new attributes and relationships.
+## Answer: 
+- The correct answer is B.Lightweight Migration (Option A) only supports simple changes like adding attributes or entities without significant restructuring. For complex changes, creating a custom mapping model (Option B) is necessary, where developers can explicitly define how data should transform and map between versions, ensuring data integrity through the migration.
