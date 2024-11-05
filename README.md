@@ -940,3 +940,23 @@ To summarize:
 - 4. Enable Automatic Schema Updating by modifying the Core Data model directly in place without versioning, as Core Data will automatically adjust to new attributes and relationships.
 ## Answer: 
 - The correct answer is B.Lightweight Migration (Option A) only supports simple changes like adding attributes or entities without significant restructuring. For complex changes, creating a custom mapping model (Option B) is necessary, where developers can explicitly define how data should transform and map between versions, ensuring data integrity through the migration.
+
+## 28. Given the code snippet below, which aims to create an array of tuples containing the index and value of each element in an array, rewrite it in a more "Swifty" and efficient way.
+```swift
+let list = [Int](1...5)
+var arrayOfTuples = [(Int, Int)]()
+
+for (index, element) in list.enumerated() {
+    arrayOfTuples += [(index, element)]
+}
+
+print(arrayOfTuples)  // Expected output: [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
+
+```
+ ### Answer: - 
+```swift
+let list = [Int](1...5)
+let arrayOfTuples = Array(list.enumerated())
+print(arrayOfTuples)  // Expected output: [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
+```
+
