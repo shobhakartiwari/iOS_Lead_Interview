@@ -959,4 +959,7 @@ let list = [Int](1...5)
 let arrayOfTuples = Array(list.enumerated())
 print(arrayOfTuples)  // Expected output: [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
 ```
+## 29. Question: Can you discuss a specific instance where you used Dependency Injection to solve a problem in an iOS project?
+- In one of my iOS projects, we needed a modular and testable way to handle network requests across multiple view controllers. Initially, network dependencies were tightly coupled, making it hard to mock data for unit testing. To solve this, I introduced Dependency Injection by designing a protocol, NetworkServiceProtocol, with required networking methods and then created a NetworkService class that conformed to this protocol.
 
+- Using DI, I passed NetworkServiceProtocol instances into the view controllers rather than directly instantiating them. This allowed us to inject mock network services during testing, making it much easier to validate different network responses without calling actual endpoints. This approach reduced code duplication, improved testability, and significantly lowered maintenance costs as we scaled the project.
