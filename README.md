@@ -988,3 +988,8 @@ func removeDuplicatesUsingSet(from array: [Int]) -> [Int] {
 ```
 - Answer : Approach 2. Time Complexity: O(n) 🚀 This method achieves linear time complexity thanks to the O(1) average lookup time of the Set. It's the preferred approach for larger datasets! 
 
+
+### iOS Developer Interview: Scenario-Based Exploration
+
+##31. Scenario: You’re assigned to improve the performance of a slow-running iOS app. How would you approach this task, and what tools or methods would you use to diagnose and fix the issues?
+- for answer follow my article over medium: https://medium.com/@shobhakartiwari/ios-developer-interview-scenario-based-exploration-c3c941a024ae
