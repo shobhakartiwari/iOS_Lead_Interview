@@ -993,3 +993,15 @@ func removeDuplicatesUsingSet(from array: [Int]) -> [Int] {
 
 ##31. Scenario: You’re assigned to improve the performance of a slow-running iOS app. How would you approach this task, and what tools or methods would you use to diagnose and fix the issues?
 - for answer follow my article over medium: https://medium.com/@shobhakartiwari/ios-developer-interview-scenario-based-exploration-c3c941a024ae
+
+## 32. fint the output - 
+```swift
+let value = [1,2,3, 4,5,6,7,8,9]
+let result = value.lazy.filter{ value in
+value % 2 != 0
+}.map { value in
+    value * value
+}.prefix (3)
+print (Array (result))
+```
+- Answer : [1,9,25]
