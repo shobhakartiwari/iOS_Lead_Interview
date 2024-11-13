@@ -190,11 +190,10 @@ instance.myProperty = 3
 ```
 
 ##  Expected Output:
-<br>Will set to 1
-<br>Did set from 2 to 1
 <br>Will set to 3
 <br>Did set from 1 to 3
-
+- However, property observers get triggered only after the self-scope and do not get triggered during the initialisation. I tried validating it with Playground and got the output only after the object was created.
+  
 ## 6. Create a dictionary where: The first key stores an array of integers. The second key holds an array of doubles. The third key contains an array of strings.Sort the arrays, but if you encounter a string array, throw an error: "Unsupported type: Sorting is not possible."
 
 ##  Solution:
