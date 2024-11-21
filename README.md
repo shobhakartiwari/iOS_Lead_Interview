@@ -1004,3 +1004,43 @@ value % 2 != 0
 print (Array (result))
 ```
 - Answer : [1,9,25]
+
+## 33. How errors been handled in swift?
+### 1. throws Keyword
+- Functions that might produce an error are marked with the throws keyword. Calling such functions requires the use of try, try?, or try!.
+```swift
+  func readFile(at path: String) throws -> String {
+    // Code to read a file, throwing an error if the file isn't found
+}
+```
+### 2. try, try?, and try! Explained
+- try: Used with do-catch to handle errors explicitly.
+- try?: Converts the result into an optional. Returns nil if an error occurs.
+- try!: Forces the operation to execute. Crashes at runtime if an error is thrown.
+```swift
+do {
+    let content = try readFile(at: "path/to/file")
+    print(content)
+} catch {
+    print("Error: \(error)")
+}
+
+// Optional error handling
+let content = try? readFile(at: "path/to/file")
+
+// Force unwrapping (not recommended)
+let content = try! readFile(at: "path/to/file")
+```
+### 3. do-catch for Explicit Error Handling
+- Use a do-catch block to handle errors thrown by a function. You can also pattern-match specific errors.
+```swift
+do {
+    let content = try readFile(at: "path/to/file")
+    print("File content: \(content)")
+} catch FileError.notFound {
+    print("File not found.")
+} catch {
+    print("An unexpected error occurred: \(error).")
+}
+```
+- you can also create your own custom error enum and throw it. 
