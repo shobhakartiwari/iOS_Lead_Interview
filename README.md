@@ -1272,3 +1272,6 @@ let result = math(1, 2, 3)  // Output: 6
 - @dynamicMemberLookup allows accessing properties of an object dynamically, similar to key-value coding. You can access members on an object even if they aren’t explicitly defined in the type, enabling dynamic member resolution at runtime.
 
 
+## Contributing
+Shobhakar Tiwari welcome contributions! Please check out our [CONTRIBUTING.md](https://github.com/shobhakartiwari/iOS_Lead_Interview/blob/main/CONTRIBUTING.md) file for guidelines on how to get started.
+
