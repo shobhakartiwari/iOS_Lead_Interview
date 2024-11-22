@@ -1044,3 +1044,231 @@ do {
 }
 ```
 - you can also create your own custom error enum and throw it. 
+
+## 34. Difference between classes and structures. [ credit goes to K Motwani ]
+<img width="683" alt="Screenshot 2024-11-21 at 10 28 31 PM" src="https://github.com/user-attachments/assets/6eab8f11-6f6b-49a6-8c99-09c07a397163">
+
+## 35. What is a computed property?
+- A computed property in Swift is a property that doesn’t store a value directly. Instead, it provides a getter (and optionally a setter) to retrieve or compute a value indirectly each time it’s accessed.
+```swift
+struct Circle {
+    var radius: Double
+
+// Computed property is defined with var for diameter with a getter and setter
+    var diameter: Double {
+        get {
+            return radius * 2
+        }
+        set {
+            radius = newValue / 2
+        }
+    }
+}
+
+var circle = Circle(radius: 5)
+print(circle.diameter)  // Output: 10
+
+circle.diameter = 20    // Sets `radius` to 10
+print(circle.radius)     // Output: 10
+```
+
+## 36. What are access specifiers?
+<img width="676" alt="Screenshot 2024-11-21 at 10 31 20 PM" src="https://github.com/user-attachments/assets/81b512cf-6569-4a54-a773-5ab3fdb76edd">
+
+## 37. Difference between GCD and Operation queues ?
+<img width="670" alt="Screenshot 2024-11-21 at 10 31 58 PM" src="https://github.com/user-attachments/assets/46ea4ae6-31be-4e1e-9f0a-c860a629c323">
+
+## 38. Explain the lifecycle of a view controller in iOS.
+- View controller’s lifecycle
+init :- Initialize properties and objects within the view controller. <br/>
+load view :- Manually create and assign the view if needed.<br/>
+viewDidLoad :- Setup initial configurations and view setup.<br/>
+ViewWillAppear :- Update views, refresh data, and make final layout changes.<br/>
+ViewWillLayoutSubviews :- make adjustments to the layout of your views before they are displayed on the screen<br/>
+ViewDidLayoutSubviews :- make adjustments to your views after their layout has been finalized<br/>
+viewDidAppear :- Trigger animations or track view display events.<br/>
+viewWillDisappear :- Save data or state changes, prepare for view to disappear.<br/>
+viewDidDisappear :- Stop ongoing tasks that are unnecessary off-screen.<br/>
+deinit :- Clean up resources before the view controller is removed.<br/>
+didReceivememoryWarning() :- Release unused memory in low-memory situations.<br/>
+viewWillTransition(to:with:) :- handle changes in the view’s layout when the device rotates or when the view’s size class changes (like switching between portrait and landscape modes , interface orientation of the device)<br/>
+
+## 39. What is URLSession, and how do you use it to make network requests?
+- URLSession is a class in Swift that provides an API for downloading, uploading, and managing network data. It is used for making network requests like GET, POST, PUT, etc and handling responses in iOS apps.It is part of the Foundation framework and can manage background downloads, API calls, file transfers, and more.
+
+## 40. Difference between synchronous and asynchronous tasks in Swift?
+<img width="675" alt="Screenshot 2024-11-21 at 10 34 07 PM" src="https://github.com/user-attachments/assets/03f25ade-2fdd-40fe-968a-f4e9c20a5425">
+
+## 41. How do you handle background tasks in iOS?
+- Background tasks allow apps to continue executing code when they’re not actively in use. Handling background tasks, such as background fetch, data uploads, location updates, or processing that should continue for a limited time.
+
+## 42. What is SwiftUI and its benefits? Difference between Swift UI and UI Kit?
+- SwiftUI is a declarative framework introduced by Apple in 2019 to build user interfaces across all Apple platforms using a unified codebase. SwiftUI simplifies the UI development process, allowing developers to describe how the UI should look and behave in a declarative way, which can reduce the complexity of UI code and enable faster, more maintainable UI development.
+- Benefits :-
+ <img width="669" alt="Screenshot 2024-11-21 at 10 35 54 PM" src="https://github.com/user-attachments/assets/cfcf4389-a565-4e07-b144-3600b472200d">
+
+## 43. Explain the difference between @State and @Binding in SwiftUI ?
+<img width="671" alt="Screenshot 2024-11-21 at 10 36 30 PM" src="https://github.com/user-attachments/assets/2d49e5db-23ab-4e32-ac3c-949b54fbafc3">
+
+## 44. What is @environment and @Published in SwiftUI ?
+<img width="674" alt="Screenshot 2024-11-21 at 10 36 57 PM" src="https://github.com/user-attachments/assets/8637356b-06c9-49b6-840a-ac0d62665415">
+
+## 45. What is a Protocol and Where Do We Use It?  [ credit goes to : Mihail Salari]
+- A protocol defines a blueprint of methods, properties, and other requirements for a particular task. It’s like an interface in other programming languages.
+- You can use protocols in various situations:
+- Delegation: For passing data between objects.
+- Data Modeling: When you need a consistent API for your models.
+- Reusable Components: Protocols can make your components more flexible and reusable.
+- In design patterns like Strategy, Observer, and Factory.
+- For mocking in unit tests.
+
+## 46. What is a Semaphore in Swift?
+- A semaphore is a powerful synchronization tool that controls access to a resource by multiple threads. In Swift, you can use DispatchSemaphore to implement it.
+```swift
+let semaphore = DispatchSemaphore(value: 1)
+
+DispatchQueue.global().async {
+    semaphore.wait()
+    /// Critical section of code
+    semaphore.signal()
+}
+```
+## 47. What is Parallel Programming in Swift?
+- Parallel programming refers to performing multiple tasks simultaneously. In Swift, this is typically accomplished using DispatchQueue.concurrentPerform.
+```swift
+DispatchQueue.concurrentPerform(iterations: 10) { index in
+    print("This is task \(index)")
+}
+```
+## 48. What is an Autorelease Pool and What is Its Main Reason? 
+- Autorelease pools store objects that are sent autorelease message. The main reason for using an autorelease pool is to control memory usage during the lifetime of an app, particularly within loops.
+```swift
+autoreleasepool {
+    /// Your code that creates many temporary autoreleased objects
+}
+```
+- Autorelease pools help in reducing the peak memory footprint, providing a more responsive user experience.
+
+## 48. Can delegation be implemented without a protocol? If yes, then why do we need a Protocol? [ FAANG Asked Question]
+- Yes, delegation can be implemented without a protocol in Swift, but using a protocol makes delegation more structured, reusable, and type-safe. Here's a breakdown of why you can do it without a protocol and why using a protocol is beneficial:
+``` swift
+class Manager {
+    var delegate: AnyObject? // No protocol required
+    func performTask() {
+        (delegate as? Employee)?.executeTask()
+    }
+}
+
+class Employee {
+    func executeTask() {
+        print("Task executed by Employee.")
+    }
+}
+
+let manager = Manager()
+let employee = Employee()
+manager.delegate = employee // Assigning without a protocol
+manager.performTask() // Output: Task executed by Employee.
+```
+## 49. Why Do We Need Protocols for Delegation?
+- While it’s possible to implement delegation without a protocol, using a protocol offers key advantages:
+
+- 1. Enforces a Contract
+
+- A protocol ensures that the delegate adheres to a defined contract by implementing required methods. This avoids runtime errors caused by missing or incorrectly implemented methods.
+```swift
+protocol TaskDelegate {
+    func executeTask()
+}
+
+class Manager {
+    var delegate: TaskDelegate? // Protocol-constrained delegate
+    func performTask() {
+        delegate?.executeTask()
+    }
+}
+
+class Employee: TaskDelegate {
+    func executeTask() {
+        print("Task executed by Employee.")
+    }
+}
+
+let manager = Manager()
+let employee = Employee()
+manager.delegate = employee
+manager.performTask() // Output: Task executed by Employee.
+
+```
+- Compile-Time Safety
+- Without a protocol, you must cast the delegate to a specific type, which can fail at runtime. Protocols eliminate this risk by allowing the compiler to check conformance.
+- manager.delegate = "InvalidDelegate" // Compile-time error if delegate must conform to `TaskDelegate`.
+- Flexibility and Reusability
+- Using a protocol makes the delegation pattern more flexible, allowing different types to conform to the protocol. This enables reusability across various classes or modules.
+```swift
+class Freelancer: TaskDelegate {
+    func executeTask() {
+        print("Task executed by Freelancer.")
+    }
+}
+
+let freelancer = Freelancer()
+manager.delegate = freelancer
+manager.performTask() // Output: Task executed by Freelancer.
+```
+- 4. Decoupling
+- Protocols reduce tight coupling between the delegator and delegate classes. The delegator doesn't need to know the exact type of the delegate, only that it conforms to the protocol.
+- 5. Scalability
+-  Protocols support default implementations via extensions, making it easier to scale functionality without modifying existing classes.
+
+## 50. When to use , the Singleton pattern?
+### When you need to manage a shared resource, such as:
+- A network manager for making API requests.
+- A database connection or cache manager.
+- A logging system to record events.
+
+### Global State Management
+- When maintaining global state, such as user session data or configuration settings, that should only exist once throughout the app lifecycle.
+### Centralized Coordination
+- For managing cross-cutting concerns like:
+- A theme manager for UI appearance.
+- A notification manager to handle system-wide notifications.
+### Thread-Safe Lazy Initialization
+- If creating the instance is expensive or requires coordination across threads, a Singleton provides a mechanism for thread-safe, lazy initialization.
+
+## When not to use the singleton pattern?
+- Tight Coupling (If classes depend directly on a Singleton, it creates tight coupling, making the code harder to test and maintain. This violates the Dependency Inversion Principle.)
+- Global State Pollution ( Overusing Singletons for mutable shared states can lead to hard-to-debug issues, especially in concurrent or multi-threaded environments.
+Example Problem: Two parts of the app modify the same Singleton state simultaneously, causing unintended side effects.)
+- Testing and Mocking Challenges (Singletons make it difficult to test code in isolation since you cannot easily mock or replace their functionality.
+Better Alternative: Use protocols and dependency injection to allow mock implementations during tests.)
+- Overhead for Simple Scenarios (If the same functionality can be achieved with simpler patterns, avoid the Singleton for unnecessary complexity. For instance, static methods or structs may suffice.)
+-Hidden Dependencies ( Singletons introduce hidden dependencies that are not immediately apparent from the API of a class or module, making the code less readable and harder to refactor.)
+
+## 51. Why are IBOutlets weak by default? What happens when we make them strong? Is it even a problem?
+- IBOutlets are weak by default to avoid retain cycles since the view hierarchy already holds strong references to its subviews. Making them strong can cause memory leaks if the view controller or its views are not properly deallocated.
+
+## 52. How do cocoapods work?
+- CocoaPods is a dependency manager for iOS that automates adding third-party libraries to projects. You define dependencies in a Podfile, run pod install to download them, and use the generated .xcworkspace to manage your app alongside the libraries. It handles downloading, linking, and versioning efficiently.
+
+## 53. Why did Apple chose to go with structures to implement primitive types in Swift?
+- Apple chose structures for primitive types in Swift due to their value semantics, which ensure safety, thread safety, and simplicity. Structures are optimized for performance, use less memory (stack allocation), and avoid issues like shared mutable state, making them ideal for Swift’s design goals.
+
+## 54. What is @Frozen keyword in swift ?
+- follow my medium article on this: https://medium.com/@shobhakartiwari/understanding-the-frozen-attribute-in-swift-a-guide-for-developers-bbb98cf8c235
+
+## 55. What are ‘@dynamicCallable’ and ‘dynamic member lookup’ in Swift?
+- @dynamicCallable allows an object to be called like a function, with dynamic arguments. You define a method to handle the call, like dynamicallyCall(withArguments:)
+```swift
+@dynamicCallable
+struct Math {
+    func dynamicallyCall(withArguments args: [Int]) -> Int {
+        return args.reduce(0, +)
+    }
+}
+let math = Math()
+let result = math(1, 2, 3)  // Output: 6
+```
+- @dynamicMemberLookup allows accessing properties of an object dynamically, similar to key-value coding. You can access members on an object even if they aren’t explicitly defined in the type, enabling dynamic member resolution at runtime.
+
+
