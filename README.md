@@ -1273,5 +1273,5 @@ let result = math(1, 2, 3)  // Output: 6
 
 
 ## Contributing
-Shobhakar Tiwari welcome contributions! Please check out our [CONTRIBUTING.md](https://github.com/shobhakartiwari/iOS_Lead_Interview/blob/main/CONTRIBUTING.md) file for guidelines on how to get started.
+Shobhakar Tiwari welcome contributions! Please check out our [CONTRIBUTING.md](https://raw.githubusercontent.com/shobhakartiwari/iOS_Lead_Interview/refs/heads/main/CONTRIBUTING.md) file for guidelines on how to get started.
 
