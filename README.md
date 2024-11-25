@@ -1271,6 +1271,8 @@ let result = math(1, 2, 3)  // Output: 6
 ```
 - @dynamicMemberLookup allows accessing properties of an object dynamically, similar to key-value coding. You can access members on an object even if they aren’t explicitly defined in the type, enabling dynamic member resolution at runtime.
 
+## 56. Can you compare the use cases for value types and reference types in app development?
+- For answer follow my answer : https://github.com/shobhakartiwari/structure-vs-classes.git
 
 ## Contributing
 Shobhakar Tiwari welcome contributions! Please check out our [CONTRIBUTING.md](https://raw.githubusercontent.com/shobhakartiwari/iOS_Lead_Interview/refs/heads/main/CONTRIBUTING.md) file for guidelines on how to get started.
