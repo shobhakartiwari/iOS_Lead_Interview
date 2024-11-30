@@ -1274,6 +1274,17 @@ let result = math(1, 2, 3)  // Output: 6
 ## 56. Can you compare the use cases for value types and reference types in app development?
 - For answer follow my answer : https://github.com/shobhakartiwari/structure-vs-classes.git
 
+## 57. Which Sorting Algorithm Does Swift's High-Order Function `sorted()` Use?
+- TimSort
+```swift
+Timsort is a powerful hybrid sorting algorithm that blends the best features of merge sort and insertion sort. Here's why it stands out:
+
+🛡️ Stability: Preserves the relative order of equal elements, making it ideal for sorting complex data types.
+⚡ Efficiency: Handles large datasets with a worst-case time complexity of O(n log n), ensuring reliable performance.
+🔄 Adaptability: Excels with partially sorted arrays, optimizing sorting operations for real-world scenarios.
+This combination of speed, stability, and adaptability makes Timsort a go-to algorithm for efficient sorting in Swift and beyond. 🚀
+```
+
 ## Contributing
 Shobhakar Tiwari welcome contributions! Please check out our [CONTRIBUTING.md](https://raw.githubusercontent.com/shobhakartiwari/iOS_Lead_Interview/refs/heads/main/CONTRIBUTING.md) file for guidelines on how to get started.
 
