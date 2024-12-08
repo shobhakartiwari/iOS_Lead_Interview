@@ -1285,6 +1285,12 @@ Timsort is a powerful hybrid sorting algorithm that blends the best features of 
 This combination of speed, stability, and adaptability makes Timsort a go-to algorithm for efficient sorting in Swift and beyond. 🚀
 ```
 
+## 58. What will be the output of the following Swift code used in Shobhakar Tiwari's iOS Mock Interview session?
+<img width="321" alt="Screenshot 2024-12-07 at 11 53 21 PM" src="https://github.com/user-attachments/assets/9a3d04c5-b9ae-4291-8b7d-027bfabcebc2">
+
+- Answer : iOS Swift Mock
+
+
 ## Contributing
 Shobhakar Tiwari welcome contributions! Please check out our [CONTRIBUTING.md](https://raw.githubusercontent.com/shobhakartiwari/iOS_Lead_Interview/refs/heads/main/CONTRIBUTING.md) file for guidelines on how to get started.
 
