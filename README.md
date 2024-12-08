@@ -1288,7 +1288,13 @@ This combination of speed, stability, and adaptability makes Timsort a go-to alg
 ## 58. What will be the output of the following Swift code used in Shobhakar Tiwari's iOS Mock Interview session?
 <img width="321" alt="Screenshot 2024-12-07 at 11 53 21 PM" src="https://github.com/user-attachments/assets/9a3d04c5-b9ae-4291-8b7d-027bfabcebc2">
 
-- Answer : iOS Swift Mock
+- Options are  :
+#1. iOS Swift Mock
+#2. UIKit Trialing
+#3. Compile-time Error
+#4. Runtime Error
+
+- Answer : #3. Compile-time Error.
 
 
 ## Contributing
