@@ -1296,6 +1296,8 @@ This combination of speed, stability, and adaptability makes Timsort a go-to alg
 
 - Answer : #3. Compile-time Error.
 
+## 59. Swift’s Triple Self: self, Self, and Self.self
+- https://medium.com/@shobhakartiwari/swifts-triple-self-self-self-and-self-self-99970389aaf8
 
 ## Contributing
 Shobhakar Tiwari welcome contributions! Please check out our [CONTRIBUTING.md](https://raw.githubusercontent.com/shobhakartiwari/iOS_Lead_Interview/refs/heads/main/CONTRIBUTING.md) file for guidelines on how to get started.
